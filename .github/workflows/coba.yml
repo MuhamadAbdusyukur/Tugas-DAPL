@@ -27,7 +27,7 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v3 # Koreksi versi ke v3 untuk mengatasi kesalahan
+        uses: docker/build-push-actions@v3 # Koreksi versi ke v3 untuk mengatasi kesalahan
         with:
           context: .
           file: ./Dockerfile
