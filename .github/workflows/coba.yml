@@ -14,7 +14,6 @@ jobs:
 
   push_to_registry:
     name: push Docker image to Docker Hub
-    needs: unit-test # Pastikan unit test berhasil sebelum membangun dan mendorong image
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -27,9 +26,9 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-actions@v3 # Koreksi versi ke v3 untuk mengatasi kesalahan
+        uses: docker/build-push-action@v5
         with:
-          context: .
+          context: . 
           file: ./Dockerfile
           push: true
-          tags: muhamadabdusyukur/Tugas-DAPL:test
+          tags: muhamadabdusyukur/coba-action:latest
