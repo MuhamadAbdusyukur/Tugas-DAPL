@@ -4,7 +4,7 @@ WORKDIR /src/app
 COPY . .
 
 RUN npm install
-RUN npm build
+RUN npm run build
 
 FROM node:20-alpine
 
