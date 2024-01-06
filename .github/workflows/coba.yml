@@ -31,4 +31,4 @@ jobs:
           context: . 
           file: ./Dockerfile
           push: true
-          tags: muhamadabdusyukur/coba-action:latest
+          tags: muhamadabdusyukur/coba-action::v1.0.0
