@@ -1,22 +1,33 @@
 name: learn-github-actions
 run-name: ${{ github.actor }} is learning GitHub Actions
-on: [push]
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   unit-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      - run: npm install
-      - run: npm run test
+          node-version: '14' # Ganti dengan versi Node.js yang sesuai
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm run test
 
   push_to_registry:
-    name: push Docker image to Docker Hub
+    name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the repo
+      - name: Checkout the repo
         uses: actions/checkout@v4
 
       - name: Log in to Docker Hub
