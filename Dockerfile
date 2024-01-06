@@ -1,15 +1,20 @@
-FROM node:20-alpine as stage
+# Stage 1: Build the application
+FROM node:20-alpine as build
 
 WORKDIR /src/app
-COPY . .
+COPY package*.json ./
 
 RUN npm install
+
+COPY . .
+
 RUN npm run build
 
+# Stage 2: Create a minimal production image
 FROM node:20-alpine
 
 WORKDIR /src/app
 
-COPY --from=stage /src/app/dist ./dist
+COPY --from=build /src/app/dist ./dist
 
-CMD [ "node", "dist/main.js" ]
+CMD ["node", "dist/main.js"]
